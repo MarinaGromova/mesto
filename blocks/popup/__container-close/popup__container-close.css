@@ -6,10 +6,12 @@
   width: 32px;
   height: 32px;
   position: absolute;
-  top: -36px;
-  right: -36px;
+  top: -40px;
+  right: -40px;
   border: 0;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
 .popup__container-close:hover {

@@ -2,15 +2,13 @@
   max-width: 880px;
   max-height: 74px;
   margin: 45px auto 40px;
-  border-bottom-color: rgb(84, 84, 84, 0.7);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
+  border-bottom: 1px solid rgb(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 767px) {
   .header {
     min-width: 320px;
     max-height: 56px;
-    margin: 28px auto 42px;
+    margin: 28px auto 40px;
   }
 }

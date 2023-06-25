@@ -9,16 +9,19 @@
   padding: 0;
   box-sizing: border-box;
   align-self: flex-end;
+  margin-bottom: 6px;
 }
 
 .profile__edit-button:hover {
-	opacity: .6;
-	transition: ease .3s;
+  opacity: 0.6;
+  transition: ease 0.3s;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
-  .profile__text {
-    font-size: 18px;
-    line-height: 18px;
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    background-size: 7px 7px;
   }
 }

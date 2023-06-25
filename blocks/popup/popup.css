@@ -8,9 +8,5 @@
   color: #fff;
   overflow: auto;
   display: none;
-}
-
-.popup_opened {
-  display: flex;
   align-items: center;
 }

@@ -5,6 +5,6 @@
 
 @media screen and (max-width: 933px) {
   .elements {
-    margin: 36px 19px 48px;
+    margin: 36px 19px 48px 19px;
   }
 }

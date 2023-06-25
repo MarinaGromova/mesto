@@ -1,6 +1,6 @@
 .popup__container-submit {
   margin-top: 48px;
-  font-family: Inter;
+  font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -12,8 +12,9 @@
 }
 
 .popup__container-submit:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   transition: ease 0.3s;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 590px) {
