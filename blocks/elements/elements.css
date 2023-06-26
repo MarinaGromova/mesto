@@ -3,8 +3,9 @@
   margin: 51px auto 66px;
 }
 
-@media screen and (max-width: 933px) {
+@media screen and (max-width: 918px) {
   .elements {
-    margin: 36px 19px 48px 19px;
+    width: calc(100% - 19px * 2);
+    margin: 36px auto 48px;
   }
 }

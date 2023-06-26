@@ -9,6 +9,7 @@
   background-color: #000;
   min-height: 50px;
   width: 100%;
+  border: none;
 }
 
 .popup__container-submit:hover {

@@ -1,11 +1,4 @@
 .elements__group_active {
   background: transparent;
   background-image: url(../../../../images/group-active.svg);
-  background-position: center;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  opacity: 1;
-  width: 22px;
-  height: 19px;
-  border: 0;
 }
