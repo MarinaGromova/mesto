@@ -1,0 +1,22 @@
+.popup__container_zoom {
+  padding: 0;
+}
+
+@media screen and (max-width: 618px) {
+  .popup__container_zoom {
+    max-width: 433px;
+  }
+}
+
+@media screen and (max-width: 482px) {
+  .popup__container_zoom {
+    max-width: 240px;
+    max-height: 300px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__container {
+    margin: 0 40px;
+  }
+}
