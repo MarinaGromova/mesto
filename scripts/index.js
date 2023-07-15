@@ -1,12 +1,12 @@
 //кнопка редактирования
-const editProfileButton = document.querySelector('.profile__edit-button');
+const buttonOpenEditProfilePopup = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_edit');
-const popupCloseProfile = popupEditProfile.querySelector('.popup__container-close');
+const buttonCloseEditProfilePopup = popupEditProfile.querySelector('.popup__container-close');
 
 //кнопка добавления
-const AddplusButton = document.querySelector('.profile__plus-button');
+const buttonOpenAddCardPopup = document.querySelector('.profile__plus-button');
 const popupAddProfile = document.querySelector('.popup_type_profile');
-const popupCloseProfileCard = popupAddProfile.querySelector('.popup__container-close');
+const buttonCloseAddCardPopup = popupAddProfile.querySelector('.popup__container-close');
 
 //кнопка сохранить
 const formElement = document.querySelector('.popup__container-form');
@@ -21,7 +21,7 @@ const profileDescription = document.querySelector('.profile__text');
 const popupZoomImage = document.querySelector('.popup_type_image');
 const popupImage = popupZoomImage.querySelector('.popup__image');
 const popupCaption = popupZoomImage.querySelector('.popup__caption');
-const popupCloseZoom = popupZoomImage.querySelector('.popup__container-close');
+const buttonCloseZoomPopup = popupZoomImage.querySelector('.popup__container-close');
 
 //кнопка создать
 const cardInput = popupAddProfile.querySelector('.popup__input_type_card');
@@ -30,7 +30,7 @@ const urlInput = popupAddProfile.querySelector('.popup__input_type_url');
 //карточки
 const sectionElements = document.querySelector('.elements__grid');
 const templateElement = document.querySelector('.template-card').content;
-const formElementCard = document.querySelector('.popup__container-form_type_card');
+const formAddCard = document.querySelector('.popup__container-form_type_card');
 
 //функция закрытия
 function closePopup(popup) {
@@ -90,43 +90,38 @@ const renderCards = () => {
 };
 
 //добавление новых карточек
-const AddNewCard = (evt) => {
+const submitAddCardForm = (evt) => {
   evt.preventDefault();
   const newCard = createCard({ name: cardInput.value, link: urlInput.value });
   sectionElements.prepend(newCard);
-  cardInput.value = '';
-  urlInput.value = '';
   closePopup(popupAddProfile);
 };
 
 renderCards();
 
 //функция редактирования
-editProfileButton.addEventListener('click', () => {
+buttonOpenEditProfilePopup.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 });
-popupCloseProfile.addEventListener('click', () => {
+buttonCloseEditProfilePopup.addEventListener('click', () => {
   closePopup(popupEditProfile);
 });
 
 //кнопка добавления и закрытия
-AddplusButton.addEventListener('click', () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileDescription.textContent;
+buttonOpenAddCardPopup.addEventListener('click', () => {
+  formAddCard.reset();
   openPopup(popupAddProfile);
 });
 
-popupCloseProfileCard.addEventListener('click', () => {
+buttonCloseAddCardPopup.addEventListener('click', () => {
   closePopup(popupAddProfile);
 });
 
-popupCloseProfileCard.addEventListener('click', closePopup(popupAddProfile));
-
-popupCloseZoom.addEventListener('click', () => {
+buttonCloseZoomPopup.addEventListener('click', () => {
   closePopup(popupZoomImage);
 });
 
 formElement.addEventListener('submit', handleEditFormSubmit);
-formElementCard.addEventListener('submit', AddNewCard);
+formAddCard.addEventListener('submit', submitAddCardForm);
