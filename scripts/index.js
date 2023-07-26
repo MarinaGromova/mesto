@@ -9,7 +9,7 @@ const popupAddProfile = document.querySelector('.popup_type_profile');
 const buttonCloseAddCardPopup = popupAddProfile.querySelector('.popup__container-close');
 
 //кнопка сохранить
-const formElement = document.querySelector('.popup__container-form');
+const formElement = document.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__input_type_name');
 const jobInput = formElement.querySelector('.popup__input_type_job');
 
@@ -30,7 +30,10 @@ const urlInput = popupAddProfile.querySelector('.popup__input_type_url');
 //карточки
 const sectionElements = document.querySelector('.elements__grid');
 const templateElement = document.querySelector('.template-card').content;
-const formAddCard = document.querySelector('.popup__container-form_type_card');
+const formAddCard = document.querySelector('.popup__form_type_card');
+
+//оверлей
+const popupList = document.querySelectorAll('.popup');
 
 //функция закрытия
 function closePopup(popup) {
@@ -41,6 +44,22 @@ function closePopup(popup) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
+
+//закрытие форм по кнопке Esc
+
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened)
+  }
+}
+
+//оверлей
+popupList.forEach((item) => item.addEventListener('click', function(evt){
+  if (evt.target.classList.contains('popup_opened')) {
+      closePopup(evt.target);
+  }
+}))
 
 //функция сохранения
 function handleEditFormSubmit(evt) {
@@ -125,3 +144,4 @@ buttonCloseZoomPopup.addEventListener('click', () => {
 
 formElement.addEventListener('submit', handleEditFormSubmit);
 formAddCard.addEventListener('submit', submitAddCardForm);
+document.addEventListener('keydown', closePopupEsc);
