@@ -10,13 +10,11 @@
   padding: 34px 36px 37px;
   box-sizing: border-box;
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
-  min-height: 282px;
 }
 
 @media screen and (max-width: 590px) {
   .popup__container {
     width: 282px;
-    /* max-height: 322px; */
     padding: 25px 19px;
   }
 }
@@ -24,7 +22,6 @@
 @media screen and (max-width: 480px) {
   .popup__container {
     padding: 25px 19px;
-    width: 282px;
   }
 }
 
