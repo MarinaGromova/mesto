@@ -2,11 +2,11 @@
   background-color: #f6f6f6;
   opacity: 0.2;
   color: #000;
-  border-radius: 2px;
   border: 1px solid #000;
-  cursor: default;
+  box-sizing: border-box;
 }
 
 .popup__container-submit_disabled:hover{
   opacity: 0.2;
+  cursor: default;
 }

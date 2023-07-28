@@ -14,9 +14,3 @@
     max-height: 300px;
   }
 }
-
-@media screen and (max-width: 320px) {
-  .popup__container {
-    margin: 0 40px;
-  }
-}

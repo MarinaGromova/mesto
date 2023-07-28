@@ -20,3 +20,9 @@
   margin-top: 12px;
 }
 
+@media screen and (max-width: 590px) {
+  .popup__input {
+    max-width: 238px;
+  }
+}
+
