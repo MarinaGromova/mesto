@@ -1,3 +1,5 @@
+export {initialCards,validationConfig};
+
 const initialCards = [
   {
     name: 'Лайм',
