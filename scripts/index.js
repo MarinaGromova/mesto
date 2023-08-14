@@ -6,12 +6,12 @@ import FormValidator from './formValidator.js';
 //кнопка редактирования
 const buttonOpenEditProfilePopup = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_edit');
-const buttonCloseEditProfilePopup = popupEditProfile.querySelector('.popup__container-close');
+// const buttonCloseEditProfilePopup = popupEditProfile.querySelector('.popup__container-close');
 
 //кнопка добавления
 const buttonOpenAddCardPopup = document.querySelector('.profile__plus-button');
 const popupAddProfile = document.querySelector('.popup_type_profile');
-const buttonCloseAddCardPopup = popupAddProfile.querySelector('.popup__container-close');
+// const buttonCloseAddCardPopup = popupAddProfile.querySelector('.popup__container-close');
 
 //кнопка сохранить
 const formEditProfile = popupEditProfile .querySelector('.popup__form');
@@ -22,11 +22,14 @@ const jobInput = formEditProfile.querySelector('.popup__input_type_job');
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__text');
 
+//крестик
+const closeButtons = document.querySelectorAll('.popup__container-close');
+
 //кнопка zoom
-export const popupZoomImage = document.querySelector('.popup_type_image');
-export const popupImage = popupZoomImage.querySelector('.popup__image');
-export const popupCaption = popupZoomImage.querySelector('.popup__caption');
-const buttonCloseZoomPopup = popupZoomImage.querySelector('.popup__container-close');
+const popupZoomImage = document.querySelector('.popup_type_image');
+const popupImage = popupZoomImage.querySelector('.popup__image');
+const popupCaption = popupZoomImage.querySelector('.popup__caption');
+// const buttonCloseZoomPopup = popupZoomImage.querySelector('.popup__container-close');
 
 //кнопка создать
 const cardInput = popupAddProfile.querySelector('.popup__input_type_card');
@@ -76,7 +79,7 @@ function handleEditFormSubmit(evt) {
 
 //создаем карточку
 function createCard(data) {
-  const card = new Card(data, '.template-card');
+  const card = new Card(data, '.template-card', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -90,10 +93,23 @@ function submitAddCardForm(evt) {
   closePopup(popupAddProfile);
 };
 
+function handleCardClick(name, link) {
+  popupCaption.textContent = name;
+  popupImage.src = link;
+  popupImage.alt = link;
+  openPopup(popupZoomImage);
+};
+
 //подгружаем массив в html
 initialCards.forEach((item) => {
   const card = createCard(item);
   sectionElements.append(card);
+});
+
+//функция закрытия на крестик
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
 });
 
 //функция редактирования
@@ -101,28 +117,18 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
-  const formValidator = new FormValidator(validationConfig);
-  formValidator.enableValidation();
-});
-
-buttonCloseEditProfilePopup.addEventListener('click', () => {
-  closePopup(popupEditProfile);
+  const formValidatorEditProfile = new FormValidator(validationConfig, formEditProfile);
+  formValidatorEditProfile.resetValidation();
+  formValidatorEditProfile.enableValidation();
 });
 
 //кнопка добавления и закрытия
 buttonOpenAddCardPopup.addEventListener('click', () => {
   formAddCard.reset();
   openPopup(popupAddProfile);
-  const formValidator = new FormValidator(validationConfig);
-  formValidator.enableValidation();
-});
-
-buttonCloseAddCardPopup.addEventListener('click', () => {
-  closePopup(popupAddProfile);
-});
-
-buttonCloseZoomPopup.addEventListener('click', () => {
-  closePopup(popupZoomImage);
+  const formValidatorAddCard = new FormValidator(validationConfig, formAddCard);
+  formValidatorAddCard.resetValidation();
+  formValidatorAddCard.enableValidation();
 });
 
 formEditProfile.addEventListener('submit', handleEditFormSubmit);

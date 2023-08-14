@@ -1,9 +1,8 @@
-import {openPopup, popupCaption,popupZoomImage,popupImage} from './index.js';
-
 export default class Card {
-  constructor (data, templateSelector) {
+  constructor (data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   };
 
@@ -20,6 +19,7 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.elements__img').src = this._link;
+    this._element.querySelector('.elements__img').alt = this._name;
     this._element.querySelector('.elements__title').textContent = this._name;
     this._likeButton = this._element.querySelector('.elements__group');
     this._basketButton = this._element.querySelector('.elements__basket');
@@ -38,18 +38,10 @@ export default class Card {
     this._element.remove();
   }
 
-  //зум
-  _handleImage() {
-    popupCaption.textContent = this._name;
-    popupImage.src = this._link;
-    popupCaption.alt = this._name;
-    openPopup(popupZoomImage);
-  }
-
   //слушатели
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => this._handleLike());
     this._basketButton.addEventListener('click', () => this._handleDelete());
-    this._elementImage.addEventListener('click', () => this._handleImage());
+    this._elementImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   };  
 }
