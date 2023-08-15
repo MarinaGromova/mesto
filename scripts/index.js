@@ -29,7 +29,6 @@ const closeButtons = document.querySelectorAll('.popup__container-close');
 const popupZoomImage = document.querySelector('.popup_type_image');
 const popupImage = popupZoomImage.querySelector('.popup__image');
 const popupCaption = popupZoomImage.querySelector('.popup__caption');
-// const buttonCloseZoomPopup = popupZoomImage.querySelector('.popup__container-close');
 
 //кнопка создать
 const cardInput = popupAddProfile.querySelector('.popup__input_type_card');
@@ -41,6 +40,10 @@ const formAddCard = document.querySelector('.popup__form_type_card');
 
 //оверлей
 const popupList = document.querySelectorAll('.popup');
+
+//создание экземпляра валидации для каждой формы
+const formValidatorEditProfile = new FormValidator(validationConfig, formEditProfile);
+const formValidatorAddCard = new FormValidator(validationConfig, formAddCard);
 
 //функция закрытия
 function closePopup(popup) {
@@ -116,20 +119,20 @@ closeButtons.forEach((button) => {
 buttonOpenEditProfilePopup.addEventListener('click', () => {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
-  jobInput.value = profileDescription.textContent;
-  const formValidatorEditProfile = new FormValidator(validationConfig, formEditProfile);
+  jobInput.value = profileDescription.textContent; 
   formValidatorEditProfile.resetValidation();
-  formValidatorEditProfile.enableValidation();
 });
 
 //кнопка добавления и закрытия
 buttonOpenAddCardPopup.addEventListener('click', () => {
   formAddCard.reset();
   openPopup(popupAddProfile);
-  const formValidatorAddCard = new FormValidator(validationConfig, formAddCard);
   formValidatorAddCard.resetValidation();
-  formValidatorAddCard.enableValidation();
 });
 
 formEditProfile.addEventListener('submit', handleEditFormSubmit);
 formAddCard.addEventListener('submit', submitAddCardForm);
+
+//вызов функции валидации
+formValidatorEditProfile.enableValidation();
+formValidatorAddCard.enableValidation();

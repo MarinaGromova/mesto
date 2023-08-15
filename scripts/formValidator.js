@@ -55,7 +55,7 @@ export default class FormValidator {
     this._setEventListeners();
   };
 
-  //функция проверки полей на валидность
+  //функция проверки сразу всех полей на валидность
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => !inputElement.validity.valid);
   };
