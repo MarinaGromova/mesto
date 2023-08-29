@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto Russia</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <script src="./scripts/index.js" defer type="module"></script>
+    <script src="./pages/index.js" defer type="module"></script>
   </head>
 
   <body class="root">
@@ -29,7 +29,7 @@
         </section>
       </main>        
         <footer class="footer">
-          <p class="footer__copyright">© 2020 Mesto Russia</p>
+          <p class="footer__copyright">© 2023 Mesto Russia</p>
         </footer>
     </div>
     <div class="popup popup_type_edit">
@@ -37,9 +37,9 @@
         <button type="button" aria-label="Закрыть" class="popup__container-close"></button>
         <h2 class="popup__container-title">Редактировать профиль</h2>
         <form name="type-form" class="popup__form popup__form_type_edit" novalidate>
-            <input name="text" id="username" class="popup__input popup__input_type_name" placeholder="Имя" value="Жак-Ив Кусто" type="text" minlength="2" maxlength="40" required>
+            <input name="user" id="username" class="popup__input popup__input_type_name" placeholder="Имя" value="Жак-Ив Кусто" type="text" minlength="2" maxlength="40" required>
             <span class ="popup__input-error username-error"></span>
-            <input name="text" id="input-job" class="popup__input popup__input_type_job" placeholder="О себе" value="Исследователь океана" type="text" minlength="2" maxlength="200" required>
+            <input name="about" id="input-job" class="popup__input popup__input_type_job" placeholder="О себе" value="Исследователь океана" type="text" minlength="2" maxlength="200" required>
             <span class ="popup__input-error input-job-error"></span>
             <button type="submit" class="popup__container-submit popup__container-submit_disabled">Сохранить</button>
         </form>
