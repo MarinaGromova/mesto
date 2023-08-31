@@ -18,12 +18,13 @@ export default class Card {
 //подготовка к публикации
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.elements__img').src = this._link;
-    this._element.querySelector('.elements__img').alt = this._name;
+    this._elementImage = this._element.querySelector('.elements__img');
+    this._elementImage.src = this._link;
+    this._elementImage.alt = this._name;
     this._element.querySelector('.elements__title').textContent = this._name;
     this._likeButton = this._element.querySelector('.elements__group');
     this._basketButton = this._element.querySelector('.elements__basket');
-    this._elementImage = this._element.querySelector('.elements__img');
+    
     this._setEventListeners();
     return this._element;
   };

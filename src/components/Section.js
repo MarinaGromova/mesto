@@ -14,4 +14,8 @@ export default class Section {
       this._renderer(item);
     });
   }
+
+  prependItem(item) {
+    this._container.prepend(item);
+  }
 }
