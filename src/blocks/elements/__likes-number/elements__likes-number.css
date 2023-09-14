@@ -1,0 +1,10 @@
+.elements__likes-number {
+  line-height: normal;
+  font-weight: 400;
+  margin: 0;
+  font-size: 13px;
+  line-height: 15.73px;
+  text-align: center;
+  color: #000;
+  min-height: 16px;
+}
