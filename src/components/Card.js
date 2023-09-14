@@ -37,6 +37,9 @@ export default class Card {
     if(this._ownerId !== this._userId) {
       this._basketButton.remove()
     }
+    if (this._likes.some(like => like._id === this._userId)) {
+      this._handleLike()
+    }
     this._setEventListeners();
     return this._element;
   };
