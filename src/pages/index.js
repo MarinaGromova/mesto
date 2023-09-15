@@ -15,15 +15,8 @@ import {
   profileName,
   profileAvatar,
   validationConfig,
+  optionApi,
 } from '../utils/Constants.js';
-
-const optionApi = {
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-75/',
-  headers: {
-    authorization: '4907d606-220d-4e7a-be79-b47f5f6b6f53',
-    'Content-Type': "application/json"
-  }
-};
 
 const api = new Api(optionApi);
 let userId;
@@ -57,37 +50,28 @@ const profileUser = new UserInfo({
 const popupImage = new PopupWithImage('.popup_type_image');
 
 const userInfoPopup = new PopupWithForm('.popup_type_edit', data => {
-  userInfoPopup.renderLoading(true);
-  api.patchUserInfo(data)
+  return api.patchUserInfo(data)
     .then(result => {
       profileUser.setUserInfo(result);
-      userInfoPopup.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => userInfoPopup.renderLoading(false));
 });
 
 const popupProfileAdd = new PopupWithForm('.popup_type_profile', data => {
-  popupProfileAdd.renderLoading(true);
-  api.postAddCard(data)
+  return api.postAddCard(data)
     .then(result => {
       const card = createCard(result);
       cardSection.prependItem(card);
-      popupProfileAdd.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => popupProfileAdd.renderLoading(false)); 
 });
 
 const userAvatarPopup = new PopupWithForm('.popup_type_avatar', data => {
-  userAvatarPopup.renderLoading(true);
-  api.patchAvatarUrl(data)
-    .then(result => {
-      userInfo.setUserInfo(result);
-      userAvatarPopup.close();
+ return api.patchAvatarUrl(data)
+    .then((result) => {
+      profileUser.setUserInfo(result);
     })
     .catch(err => console.log(err))
-    .finally(() => userAvatarPopup.renderLoading(false));
 });
 
 const PopupWithConfirmDelete = new PopupWithConfirm('.popup_type_delete', null);
@@ -98,11 +82,13 @@ const createCard = data => {
   const card = new Card({ data, userId, templateSelector: '.template-card', handleCardClick,
     handleSetLike: cardId => {
       api.handleLike(cardId)
-        .then(data => card.handleLikeCard(data));
+        .then(data => card.handleLikeCard(data))
+        .catch((err) => console.log(err))
     },
     handleRemoveLike: cardId => {
       api.deleteLike(cardId)
         .then(data => card.handleLikeCard(data))
+        .catch((err) => console.log(err))
     },
     handleDelete: cardId => {
       PopupWithConfirmDelete.open();
@@ -119,14 +105,6 @@ const createCard = data => {
   return cardElement;
 }
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([user, cards]) => {
-    userId = user._id;
-    profileUser.setUserInfo(user);
-    cardSection.renderItems(cards, userId);
-  })
-  .catch(err => console.log(err));
-
 buttonOpenEditProfilePopup.addEventListener('click', () => {
   userInfoPopup.open();
   userInfoPopup.setInputValues(profileUser.getUserInfo());
@@ -134,11 +112,14 @@ buttonOpenEditProfilePopup.addEventListener('click', () => {
 });
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
+  formValidators['type-form'].resetValidation();
   popupProfileAdd.open();
-  formValidators['type-form'].resetValidation()
 });
 
-buttonOpenAvatarPopup.addEventListener('click', () => userAvatarPopup.open());
+buttonOpenAvatarPopup.addEventListener('click', () => {
+  userAvatarPopup.open();
+  formValidators['type-form'].resetValidation()
+});
 
 popupImage.setEventListeners();
 popupProfileAdd.setEventListeners();
@@ -146,3 +127,11 @@ userInfoPopup.setEventListeners();
 PopupWithConfirmDelete.setEventListeners();
 userAvatarPopup.setEventListeners();
 enableValidation(validationConfig); 
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userId = user._id;
+    profileUser.setUserInfo(user);
+    cardSection.renderItems(cards, userId);
+  })
+  .catch(err => console.log(err));

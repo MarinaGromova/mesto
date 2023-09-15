@@ -28,21 +28,25 @@ export default class PopupWithForm extends Popup {
     this.form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handelFormSubmit(this._getInputValues());
-      this.close();
+    });
+  };
+
+  setEventListeners() {
+    super.setEventListeners();
+    this.form.addEventListener('submit', () => {
+      // evt.preventDefault();
+      const initialText = this._buttonSubmitElement.textContent; // перед запросом сохраняем изначальный текст кнопки
+      this._buttonSubmitElement.textContent = 'Сохранение...'; // меняем его, чтобы показать пользователю ожидание
+      this._handelFormSubmit(this._getInputValues()) // закрывается попап в `then`
+      .then(() => this.close()) 
+      .finally(() => {
+        this._buttonSubmitElement.textContent = initialText; // в любом случае меняется текст кнопки обратно на начальный в `finally`
+      }) 
     });
   };
 
   close() {
-    super.close();
     this.form.reset();
-  };
-
-  //изменить текст кнопки submit в процессе обмена данными с сервером
-  renderLoading(isLoading) {
-    if (isLoading === true) {
-      this._buttonSubmitElement.textContent = 'Сохранение...';
-    } else {
-      this._buttonSubmitElement.textContent = 'Сохранить';
-    }
+    super.close();
   };
 }
