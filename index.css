@@ -22,7 +22,7 @@
 .elements__group_active{background:transparent;background-image:url(images/group-active.dd6a61e81552be95f4b7.svg)}
 .elements__basket{background-color:transparent;background-image:url(images/vector.eee0a126e1f80e773a50.svg);background-position:50% 50%;background-repeat:no-repeat;background-size:cover;border:none;cursor:pointer;flex-shrink:0;height:19px;position:absolute;right:20px;top:20px;width:18px}
 .elements__likes{max-height:35px}
-.elements__likes-number{color:#000;font-size:13px;font-weight:400;line-height:normal;line-height:15.73px;margin:0;min-height:16px;text-align:center}
+.elements__likes-number{color:#000;font-size:13px;font-weight:400;line-height:15.73px;margin:0;min-height:16px;text-align:center}
 .footer{margin:0 auto 60px;max-width:880px}@media screen and (max-width:933px){.footer{margin-bottom:36px}}
 .footer__copyright{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0;max-width:318px}@media screen and (max-width:933px){.footer__copyright{margin:0 0 0 19px}}@media screen and (max-width:767px){.footer__copyright{font-size:14px;line-height:17px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);color:#fff;display:flex;height:100%;left:0;opacity:0;overflow:auto;position:fixed;top:0;transition:visibility 0s .5s,opacity .6s;visibility:hidden;width:100%}
